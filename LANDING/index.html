@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage | EcoZenith</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {-
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Toggle content visibility
+                    const content = this.querySelector('.content');
+                    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+                });
+
+                const content = tab.querySelector('.content');
+
+                document.addEventListener('click', function (event) {
+                    if (!content.contains(event.target) && tab !== event.target) {
+                        content.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+    </script>
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab');
+
+            tabs.forEach(tab => {
+                const input = tab.querySelector('input[type="radio"]');
+                const content = tab.querySelector('.content');
+
+                input.addEventListener('change', function () {
+                    const isChecked = this.checked;
+
+                    tabs.forEach(t => {
+                        const tInput = t.querySelector('input[type="radio"]');
+                        const tContent = t.querySelector('.content');
+
+                        if (t !== tab) {
+                            tInput.checked = false;
+                            tContent.style.maxHeight = null;
+                        }
+                    });
+
+                    if (isChecked) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    } else {
+                        content.style.maxHeight = null;
+                    }
+                });
+            });
+        });
+    </script> -->
+
+    <script src="jquery-x.x.x.js"></script>
+</head>
+
+<body>
+    <div class="home">
+        <aside class="menu">
+            <div class="menu-header">
+                <p>EcoZenith</p>
+            </div>
+
+            <div class="menu-items">
+                <a href="index.html" class="menu-item">Home</a>
+                <!-- <a href="#card-container" class="menu-item">Places</a> -->
+                <a href="about.html" class="menu-item" target="_blank">About Us</a>
+                <a href="#cont" class="menu-item">FAQs</a>
+                <a href="#contact-form" class="menu-item">Contact Us</a>
+                <a href="login.html" class="menu-item" target="_blank">Login/Sign Up</a>
+            </div>
+        </aside>
+        <button class="menu-btn">
+            <i class="bi bi-list"></i>
+        </button>
+        <!-- <div class="container"> -->
+        <nav class="navbar">
+            <div class="nav-logo">
+                <h2>
+                    <p>EcoZenith</a></p>
+                </h2>
+
+            </div>
+            <div class="nav-items">
+                <a href="#" class="nav-item">Home</a>
+                <!-- <div class="nav-item">
+                    <a href="#">Places<ion-icon name="caret-down-outline"></ion-icon>
+                        <ul class="sub-menu">
+                            <li class="sub-item">West Bengal <ion-icon name="chevron-forward-outline"></ion-icon>
+                                <ul class="sub-sub-menu">
+                                    <a href="#" target="_blank">
+                                        <li class="sub-sub-item">Ajodhya Hills</li>
+                                        <li class="sub-sub-item">Mirik</li>
+                                    </a>
+                                </ul>
+                            </li>
+                            <li class="sub-item">Maharashtra <ion-icon name="chevron-forward-outline"></ion-icon>
+                                <ul class="sub-sub-menu">
+                                    <a href="MP.html" target="_blank">
+                                        <li class="sub-sub-item">Kalsubai</li>
+                                        <li class="sub-sub-item">Irshalagadh</li>
+                                    </a>
+                                </ul>
+                            </li>
+                            <li class="sub-item">Madhya Pradesh<ion-icon name="chevron-forward-outline"></ion-icon>
+                                <ul class="sub-sub-menu">
+                                    <li class="sub-sub-item">Panchmarhi</li>
+                                    <li class="sub-sub-item">Pahalgam</li>
+                                </ul>
+                            </li>
+                            <li class="sub-item">Kerala<ion-icon name="chevron-forward-outline"></ion-icon>
+                                <ul class="sub-sub-menu">
+                                    <a href="kerela.html" target="_blank">
+                                        <li class="sub-sub-item">Munnar</li>
+                                        <li class="sub-sub-item">Ashtamudi</li>
+                                    </a>
+                                </ul>
+                            </li>
+                            <li class="sub-item">Jammu & Kashmir<ion-icon name="chevron-forward-outline"></ion-icon>
+                                <ul class="sub-sub-menu">
+                                    <a href="JK.html" target="_blank">
+                                        <li class="sub-sub-item">Gurez Valley</li>
+                                        <li class="sub-sub-item">Orchha</li>
+                                    </a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </a>
+                </div> -->
+                <a href="about.html" class="nav-item" target="_blank">About</a>
+                <a href="#cont" class="nav-item">FAQs</a>
+                <a href="#contact-form" class="nav-item">Contact Us</a>
+                <a href="login.html" class="nav-item" target="_blank">Login/Sign Up</a>
+            </div>
+        </nav>
+
+        <section class="landing">
+            <section>
+                <div class="background-section">
+                    <h1>EcoZenith</h1>
+                    <br>
+                    <h2>That's a phenomenon of the Left: You don't fight evil. You fight carbon emissions</h2>
+                </div>
+            </section>
+        </section>
+
+        <!-- </div> -->
+    </div>
+    <div class="wrapper">
+        <div class="container">
+            <input type="radio" name="slide" id="c1" checked>
+            <label for="c1" class="card">
+                <div class="row">
+                    <div class="icon">1</div>
+                    <div class="description">
+                        <h4>Winter</h4>
+                        <p>Winter has so much to offer -
+                         creative activities</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c2" >
+            <label for="c2" class="card">
+                <div class="row">
+                    <div class="icon">2</div>
+                    <div class="description">
+                        <h4>Digital Technology</h4>
+                        <p>Gets better every day -
+                         stay tuned</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c3" >
+            <label for="c3" class="card">
+                <div class="row">
+                    <div class="icon">3</div>
+                    <div class="description">
+                        <h4>Globalization</h4>
+                        <p>Help people all over the world</p>
+                    </div>
+                </div>
+            </label>
+            <input type="radio" name="slide" id="c4" >
+            <label for="c4" class="card">
+                <div class="row">
+                    <div class="icon">4</div>
+                    <div class="description">
+                        <h4>New technologies</h4>
+                        <p>Space engineering becomes
+                         more and more advanced</p>
+                    </div>
+                </div>
+            </label>
+        </div>
+    </div>
+
+    <div class="body1">
+        
+        
+        <footer>
+            <!-- <div class="waves">
+                <div class="wave" id="wave1"></div>
+                <div class="wave" id="wave2"></div>
+                <div class="wave" id="wave3"></div>
+                <div class="wave" id="wave4"></div>
+            </div> -->
+            <!-- <ul class="social_icon">
+                <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            </ul> -->
+            <ul class="menu1">
+                <!-- <li><a href="">Places</a></li> -->
+                <li><a href="">About</a></li>
+                <li><a href="">Contact us</a></li>
+                <li><a href="">Login/Sign up</a></li>
+            </ul>
+            <p>Made With ❤️ By Brocode</p>
+            <p> &copy 2024, EcoZenith.com, Inc. or its affiliates</p>
+        </footer>
+    </div>
+  
