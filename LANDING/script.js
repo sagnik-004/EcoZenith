@@ -99,24 +99,28 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       });
   });
 });
+document.addEventListener('DOMContentLoaded', function () {
+  const tabs = document.querySelectorAll('.tab');
+
+  tabs.forEach(tab => {
+      tab.addEventListener('click', function () {-
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+
+          // Toggle content visibility
+          const content = this.querySelector('.content');
+          content.style.display = content.style.display === 'none' ? 'block' : 'none';
+      });
+
+      const content = tab.querySelector('.content');
+
+      document.addEventListener('click', function (event) {
+          if (!content.contains(event.target) && tab !== event.target) {
+              content.style.display = 'none';
+          }
+      });
+  });
+});
 
 
 
-
-
-
-
-// let slideIndex = 0;
-// showSlides();
-
-// function showSlides() {
-//     let slides = document.getElementsByClassName("slide");
-//     for (let i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";  
-//     }
-//     slideIndex++;
-//     if (slideIndex > slides.length) {slideIndex = 1}    
-//     slides[slideIndex-1].style.display = "block";  
-//     setTimeout(showSlides, 2000); // Change image every 2 seconds
-// }
-//step 1: get DOM
