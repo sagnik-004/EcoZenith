@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Registration Form</title>
+   <link rel="stylesheet" href="styles.css">
+   <!-- Add your other CSS links if any -->
+</head>
+
+<body>
+   <div class="container">
+      <header>Register</header>
+      <div class="progress-bar">
+         <div class="step">
+            <p>
+               Name
+            </p>
+            <div class="bullet">
+               <span>1</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+               Contact
+            </p>
+            <div class="bullet">
+               <span>2</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+               Info
+            </p>
+            <div class="bullet">
+               <span>3</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+         <div class="step">
+            <p>
+               Submit
+            </p>
+            <div class="bullet">
+               <span>4</span>
+            </div>
+            <div class="check fas fa-check"></div>
+         </div>
+      </div>
+      <div class="form-outer">
+         <form action="#">
+            <div class="page slide-page">
+               <div class="title">
+                  Basic Info:
+               </div>
+               <div class="field">
+                  <div class="label">
+                     Organisation Name
+                  </div>
+                  <input id="o-name" type="text" required/>
+               </div>
+               <div class="field">
+                  <button class="firstNext next">Next</button>
+               </div>
+               <p class="go-login">Already a member? <a href="/Login Page/Login.html">LogIn</a></p>
+            </div>
+            <div class="page">
+               <div class="title">
+                  Contact Info:
+               </div>
+               <div class="field">
+                  <div class="label">
+                     Email Address
+                  </div>
+                  <input id="email" type="email" required />
+               </div>
+               <div class="field">
+                  <div class="label">
+                     Phone Number
+                  </div>
+                  <input id="phone-num" type="number" required />
+               </div>
+               <div class="field btns">
+                  <button class="prev-1 prev">Previous</button>
+                  <button class="next-1 next">Next</button>
+               </div>
+            </div>
+            <div class="page">
+               <div class="title">
+                  Organisation Info:
+               </div>
+               <div class="infoo-pg">
+                  <div class="info-page">
+                     <div class="field">
+                        <div class="label">
+                           No. of Employee
+                        </div>
+                        <input id="num-emp" type="Number" required/>
+                     </div>
+                     <div class="field">
+                        <div class="label">
+                           No. of Vehicles in-transit
+                        </div>
+                        <input id="num-vehi" type="Number" required />
+                     </div>
+                     <div class="field">
+                        <div class="label">
+                           Tonnes of fossil fuels burnt
+                        </div>
+                        <input id="fossil-fuel" type="Number" required />
+                     </div>
+                     <div class="field">
+                        <div class="label">
+                           Tonnes of wastes disposed untreated
+                        </div>
+                        <input id="waste" type="Number" required/>
+                     </div>
+                     <div class="field">
+                        <div class="label">
+                           Amount of electricity used (in kWh)
+                        </div>
+                        <input id="electricity" type="Number" required/>
+                     </div>
+                  </div>
+               </div>
+
+
+               <div class="field btns">
+                  <button class="prev-2 prev">Previous</button>
+                  <button class="next-2 next">Next</button>
+               </div>
+            </div>
+            <div class="page">
+               <div class="title">
+                  Login Details:
+               </div>
+               <div class="field">
+                  <div class="label">
+                     Enter a username
+                  </div>
+                  <input id="username" type="text" />
+               </div>
+               <div class="field">
+                  <div class="label">
+                     Set a password
+                  </div>
+                  <input id="passw" type="password" />
+               </div>
+               <div class="field">
+                  <div class="label repassw">
+                     Re-enter password
+                  </div>
+                  <input id="repassw" type="password" />
+               </div>
+               <div class="field btns">
+                  <button class="prev-3 prev">Previous</button>
+                  <button class="submit" id="submit">Submit</button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+
+   <script src="script.js"></script>
+</body>
+<script type="module">
+   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+   import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+   const firebaseConfig = {
+      apiKey: "AIzaSyAWCEsL2MLvKg-r9v495VF0HVE_LM6EVOI",
+      authDomain: "ecozenith-bc2df.firebaseapp.com",
+      projectId: "ecozenith-bc2df",
+      storageBucket: "ecozenith-bc2df.appspot.com",
+      messagingSenderId: "614951589457",
+      appId: "1:614951589457:web:f0ef6159583c1113860a70",
+      measurementId: "G-9W8FZZFWEM"
+   };
+
+   const app = initializeApp(firebaseConfig);
+   const db = getFirestore(app);
+
+   document.getElementById('submit').addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      // Get values from form fields
+      const orgName = document.getElementById('o-name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone-num').value;
+      const emp = document.getElementById('num-emp').value;
+      const vehi = document.getElementById('num-vehi').value;
+      const fuel = document.getElementById('fossil-fuel').value;
+      const waste = document.getElementById('waste').value;
+      const elec = document.getElementById('electricity').value;
+      const username = document.getElementById('username').value;
+      const pass = document.getElementById('passw').value;
+      const repass = document.getElementById('repassw').value;
+
+
+      // Check for undefined values
+      if (!orgName || !email || !phone || !emp || !vehi || !fuel || !waste || !elec || !username || !pass) {
+         console.error('All form fields must be filled');
+         return;
+      }
+      else if (pass !== repass) {
+         console.error('Passwords must be equal!');
+         return;
+      }
+
+      try {
+         const usersCollection = collection(db, 'users');
+         await addDoc(usersCollection, {
+            orgName: orgName,
+            email: email,
+            phone: phone,
+            emp: emp,
+            vehi: vehi,
+            fuel: fuel,
+            waste: waste,
+            elec: elec,
+            username: username,
+            pass: pass
+         });
+
+         console.log('Data added successfully');
+      } catch (error) {
+         console.error('Error adding data:', error.message);
+      }
+   });
+</script>
+
+</html>

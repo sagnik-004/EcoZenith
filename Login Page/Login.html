@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Responsive Login Form | CodingLab</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <form action="#">
+      <div class="title">Login</div>
+      <div class="input-box underline">
+        <input type="text" placeholder="Enter Your Email" id="login-email" required />
+        <div class="underline"></div>
+      </div>
+      <div class="input-box">
+        <input type="password" placeholder="Enter Your Password" id="login-password" required />
+        <div class="underline"></div>
+      </div>
+      <div class="input-box button">
+        <input type="submit" id="login" value="Continue" />
+      </div>
+    </form>
+    <div class="option">or LogIn With Google</div>
+    <div class="google">
+      <a href="#"><i class="fab fa-google"></i>Sign in With Google</a>
+    </div>
+    <p class="go-register">
+      New to EcoZenith?
+      <a href="/Registration Page/index.html">Register now</a>
+    </p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    import { getAuth } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  
+    const firebaseConfig = {
+      apiKey: "AIzaSyAWCEsL2MLvKg-r9v495VF0HVE_LM6EVOI",
+      authDomain: "ecozenith-bc2df.firebaseapp.com",
+      databaseURL: "https://ecozenith-bc2df-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "ecozenith-bc2df",
+      storageBucket: "ecozenith-bc2df.appspot.com",
+      messagingSenderId: "614951589457",
+      appId: "1:614951589457:web:f0ef6159583c1113860a70",
+      measurementId: "G-9W8FZZFWEM"
+    };
+  
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+  
+    const users = []; // Define the users array
+  
+    async function getUsers() {
+  const q = collection(db, "users");
+  const querySnapshot = await getDocs(q);
+
+  const users = [];
+  querySnapshot.forEach((doc) => {
+    users.push(doc.data());
+  });
+
+  console.log(users);
+}
+  </script>
+</body>
+
+</html>
